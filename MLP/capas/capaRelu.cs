@@ -9,7 +9,7 @@ namespace COVID.MLP.capas
     [Serializable]
     public class capaRelu : capa
     {
-        public CapaRelu(int num, int num_neuronas, Random r) : base(num, num_neuronas, r)
+        public capaRelu(int num, int num_neuronas, Random r) : base(num, num_neuronas, r)
         {
         }
         public override double derivada(double x)
