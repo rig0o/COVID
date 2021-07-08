@@ -12,6 +12,7 @@ namespace COVID.DB
         private const string ConnectionString = @"Data Source=D:\SW\Dataset.db";
 		public List<double[]> data;
 		public List<double[]> target;
+		public Dictionary<string, double> dataGrafico;
 		public List<double[]> datax()
 		{
 			data = new List<double[]>();
@@ -74,6 +75,31 @@ namespace COVID.DB
 			connect.Close();
 			return target;
 
+		}
+		public SQLiteCommand tabla1()
+        {
+			SQLiteConnection connect = new SQLiteConnection(ConnectionString);
+			string query = "SELECT Fecha, Casos_Nuevos_Totales from DataSetMLP";
+			connect.Open();
+
+			SQLiteCommand comando = new SQLiteCommand(query, connect);
+			connect.Close();
+			return comando;
+        }
+		public Dictionary<string,double> grafico1()
+        {
+			SQLiteConnection connect = new SQLiteConnection(ConnectionString);
+			string query = "SELECT Fecha, Casos_Nuevos_Totales from DataSetMLP";
+			connect.Open();
+			SQLiteCommand comando = new SQLiteCommand(query, connect);
+			SQLiteDataReader datos = comando.ExecuteReader();
+			dataGrafico = new Dictionary<string, double>();
+			while (datos.Read())
+			{
+				dataGrafico.Add(datos.GetString(0),datos.GetDouble(1));
+			}
+			connect.Close();
+			return dataGrafico;
 		}
 	}
 }

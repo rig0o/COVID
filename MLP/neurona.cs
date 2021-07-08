@@ -11,7 +11,7 @@ namespace COVID.MLP
     {
         public double[] w { get; set; }
         public double b { get; set; }
-        public double ultimaSuma;
+        public double ultimaActivacion;
 
         public neurona(int num, Random r)
         {
@@ -29,7 +29,7 @@ namespace COVID.MLP
             for (int i = 0; i < inputs.Length; i++)
                 sum += inputs[i] * w[i];
 
-            ultimaSuma = sum;
+            ultimaActivacion = sum;
             return sum;
         }
     }

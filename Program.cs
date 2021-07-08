@@ -18,19 +18,21 @@ namespace COVID
         [STAThread]
         static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form2());
-
-
             database db = new database();
-            data = db.datax();
-            target = db.datay();
 
-            foreach (var x in data[0])
-            {
-                Console.Write(x);
-            }
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new mlp(db));
+
+
+            //database db = new database();
+            //data = db.datax();
+            //target = db.datay();
+
+            //foreach (var x in data[0])
+            //{
+            //    Console.Write(x);
+            //}
 
         }
     }

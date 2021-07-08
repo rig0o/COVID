@@ -10,7 +10,7 @@ namespace COVID.MLP.capas
     public abstract class capa
     {
         public List<neurona> neuronas;
-        //public double[] output;
+        public double[] output;
 
         public capa(int conexiones, int neuronas, Random r)
         {

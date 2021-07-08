@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace COVID.MLP
 {
     [Serializable]
-    public class mlp
+    public class Mlp //Mlp
     {
         public List<capa> capas;
         public List<double[]> sigma;
         public List<double[,]> deltas;
-        public mlp(List<capa> layers) // la longitud del vector indica la cantida de capas , y los valores idican la cantidad de neuronas por cada capa
+        public Mlp(List<capa> layers) // la longitud del vector indica la cantida de capas , y los valores idican la cantidad de neuronas por cada capa
         {
-            this.capas = layers;
+            this.capas = layers; //capas
         }
 
         public double[] Forward_propagation(double[] entrada) //Fordward pass  activación de todas las capas
@@ -75,7 +75,7 @@ namespace COVID.MLP
                 {
                     if (i == capas.Count - 1)
                     {
-                        double y = capas[i].neuronas[j].ultimaSuma;
+                        double y = capas[i].neuronas[j].ultimaActivacion; // ultima activacion
                         sigma[i][j] = (capas[i].funcion(y) - output[j]) * capas[i].derivada(y);
                     }
                     else
@@ -85,7 +85,7 @@ namespace COVID.MLP
                         {
                             sum += capas[i + 1].neuronas[k].w[j] * sigma[i + 1][k];
                         }
-                        sigma[i][j] = capas[i].derivada(capas[i].neuronas[j].ultimaSuma) * sum;
+                        sigma[i][j] = capas[i].derivada(capas[i].neuronas[j].ultimaActivacion) * sum;
                     }
                 }
             }
@@ -130,7 +130,7 @@ namespace COVID.MLP
                 {
                     for (int k = 0; k < capas[i].neuronas[j].w.Length; k++)
                     {
-                        deltas[i][j, k] += sigma[i][j] * capas[i - 1].funcion(capas[i - 1].neuronas[k].ultimaSuma);
+                        deltas[i][j, k] += sigma[i][j] * capas[i - 1].funcion(capas[i - 1].neuronas[k].ultimaActivacion);
 
                     }
                 }
