@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 namespace COVID.MLP.capas
 {
     [Serializable]
-    public abstract class capa
+    public abstract class Capa
     {
         public List<neurona> neuronas;
         public double[] output;
 
-        public capa(int conexiones, int neuronas, Random r)
+        public Capa(int num, int neuronas, Random r)
         {
             this.neuronas = new List<neurona>();
-            for (int i = 0; i < this.neuronas.Count; i++)
-                this.neuronas.Add(new neurona(conexiones, r));
+            for (int i = 0; i < neuronas; i++)
+                this.neuronas.Add(new neurona(num, r));
         }
         public double[] Activacion(double[] input)             ////activación de todas las neuronas de una sola capa
         {
@@ -25,7 +25,7 @@ namespace COVID.MLP.capas
             {
                 outputs.Add(funcion(neuronas[i].suma(input)));
             }
-            //output = outputs.ToArray();
+            output = outputs.ToArray();
             return outputs.ToArray();
         }
         public abstract double funcion(double input);

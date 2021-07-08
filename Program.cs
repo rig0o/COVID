@@ -28,25 +28,12 @@ namespace COVID
         {
             database db = new database();
 
-            FileStream fs = new FileStream(MlpPath, FileMode.Open);
-            try
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                red = (Mlp)formatter.Deserialize(fs);
-            }
-            catch (SerializationException e)
-            {
-                Console.WriteLine("Error en deserializacion, motivo :" + e.Message);
-                throw;
-            }
-            finally
-            {
-                fs.Close();
-            }
+            //entrenamiento.entrenar();
+            red=entrenamiento.carga();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new mlp(db));
+            Application.Run(new mlp(db,red));
 
 
             //database db = new database();

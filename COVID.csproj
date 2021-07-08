@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{712319B9-3B1A-4989-AB45-40220A5FD9AC}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>COVID</RootNamespace>
     <AssemblyName>COVID</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -83,11 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\database.cs" />
-    <Compile Include="MLP\capas\capa.cs" />
-    <Compile Include="MLP\capas\capaLineal.cs" />
-    <Compile Include="MLP\capas\capaRelu.cs" />
-    <Compile Include="MLP\capas\capaSig.cs" />
-    <Compile Include="MLP\capas\capaTanh.cs" />
+    <Compile Include="MLP\capas\Capa.cs" />
+    <Compile Include="MLP\capas\CapaLineal.cs" />
+    <Compile Include="MLP\capas\CapaRelu.cs" />
+    <Compile Include="MLP\capas\CapaSig.cs" />
+    <Compile Include="MLP\capas\CapaTanh.cs" />
+    <Compile Include="MLP\entrenamiento.cs" />
     <Compile Include="MLP\Mlp.cs" />
     <Compile Include="MLP\neurona.cs" />
     <Compile Include="Program.cs" />

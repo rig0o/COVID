@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COVID.MLP
+namespace COVID.MLP // VERSION ANTIGUA SOLO MLP
 {
     [Serializable]
-    public class Mlp //Mlp
+    public class Mlp 
     {
-        public List<capa> capas;
+        public List<Capa> capas;
         public List<double[]> sigma;
         public List<double[,]> deltas;
-        public Mlp(List<capa> layers) // la longitud del vector indica la cantida de capas , y los valores idican la cantidad de neuronas por cada capa
+        public Mlp(List<Capa> layers) // la longitud del vector indica la cantida de capas , y los valores idican la cantidad de neuronas por cada capa
         {
-            capas = new List<capa>();
+            capas = new List<Capa>();
             capas = layers; //capas
         }
 
@@ -44,7 +44,7 @@ namespace COVID.MLP
 
                 Backpropagation(entradas, salidas, alfa);
                 error = ErrorGeneral(entradas, salidas);
-                if (maxIteracion % 100 == 0)
+                //if (maxIteracion % 100 == 0)
                     Console.WriteLine(error + " ------" + maxIteracion);
             }
 
@@ -100,6 +100,7 @@ namespace COVID.MLP
                     for (int k = 0; k < capas[i].neuronas[j].w.Length; k++)
                     {
                         capas[i].neuronas[j].w[k] -= alfa * deltas[i][j, k];
+                        Console.Write();
                     }
 
                 }

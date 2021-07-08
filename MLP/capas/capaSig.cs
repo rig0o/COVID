@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace COVID.MLP.capas
 {
     [Serializable]
-    public class capaSig : capa
+    public class CapaSig : Capa
     {
-        public capaSig(int num, int num_neuronas, Random r):base(num, num_neuronas, r)
+        public CapaSig(int num, int num_neuronas, Random r):base(num, num_neuronas, r)
         {
         }
         public override double funcion(double input)

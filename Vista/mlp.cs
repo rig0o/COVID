@@ -21,10 +21,10 @@ namespace COVID.Vista
     {
         database db;
         Mlp red;
-        public mlp(database db)
+        public mlp(database db, Mlp red)
         {
             this.db = db;
-            //this.red = red;
+            this.red = red;
             InitializeComponent();
         }
 
@@ -46,29 +46,31 @@ namespace COVID.Vista
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Init data
-            cartesianChart1.Series.Clear();
-            SeriesCollection series = new SeriesCollection();
 
-            Dictionary<string, double> data = db.grafico1();
+            entrenamiento.fit();
+            ////Init data
+            //cartesianChart1.Series.Clear();
+            //SeriesCollection series = new SeriesCollection();
 
-            List<double> valores = new List<double>();
-            List<string> fechas = new List<string>();
+            //Dictionary<string, double> data = db.grafico1();
 
-            foreach(var i in data)
-            {
-                fechas.Add(i.Key);
-                valores.Add(db.NormInverse(i.Value));
-            }
+            //List<double> valores = new List<double>();
+            //List<string> fechas = new List<string>();
 
-            series.Add(new LineSeries() { Title = "Contagios" ,Values = new ChartValues<double>(valores) });
-            cartesianChart1.Series = series;
-            //cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
+            //foreach(var i in data)
             //{
-            //    Title = "Número de Días",
-            //    Labels = fechas.ToArray()
+            //    fechas.Add(i.Key);
+            //    valores.Add(db.NormInverse(i.Value));
+            //}
 
-            //});
+            //series.Add(new LineSeries() { Title = "Contagios" ,Values = new ChartValues<double>(valores) });
+            //cartesianChart1.Series = series;
+            ////cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
+            ////{
+            ////    Title = "Número de Días",
+            ////    Labels = fechas.ToArray()
+
+            ////});
             
         }
         public void f5()
@@ -107,16 +109,15 @@ namespace COVID.Vista
 
         private void button2_Click(object sender, EventArgs e) 
         {
-            //double[] input= null;
-            // entrada a la red, ultimo dia del que se tenga registro.
-            //double[] salida =db.NormInverse(red.Forward_propagation(input));
+            double[] input= db.datax()[320];
+            foreach (var x in input)
+                Console.Write(x);
+            double[] salida =db.NormInverse(red.Forward_propagation(input));
 
-            int[] salida = new int[] { 1, 2 , 3 , 4, 5, 6, 7 ,8 ,9 ,10};
-            // grid view 2
+
+            // grid view 2 - Actualizacion
             int rowEscribir = dataGridView2.Rows.Count -1;
-
             //dataGridView2.Rows.Add();
-
             dataGridView2.Rows[rowEscribir].Cells[0].Value = salida[0];
             dataGridView2.Rows[rowEscribir].Cells[1].Value = salida[1];
             dataGridView2.Rows[rowEscribir].Cells[2].Value = salida[2];

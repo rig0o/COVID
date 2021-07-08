@@ -15,10 +15,11 @@ namespace COVID.MLP
 
         public neurona(int num, Random r)
         {
-            b = (10 * r.NextDouble()) - 5;
+            //b = (10 * r.NextDouble()) - 5;
+            b = r.NextDouble() * 2 - 1;
             w = new double[num];
             for (int i = 0; i < num; i++)
-                w[i] = 10 * r.NextDouble() - 5;
+                w[i] = r.NextDouble() * 2 - 1;
         }
         /// <summary>
         /// Suma ponderada

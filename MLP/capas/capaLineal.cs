@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace COVID.MLP.capas
 {
     [Serializable]
-    public class capaLineal : capa
+    public class capaLineal : Capa
     {
         public capaLineal(int num, int num_neuronas, Random r) : base(num, num_neuronas, r)
         {

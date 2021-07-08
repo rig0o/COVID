@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace COVID.MLP.capas
 {
     [Serializable]
-    public class capaTanh : capa
+    public class CapaTanh : Capa
     {
-        public capaTanh(int num, int num_neuronas, Random r) : base(num, num_neuronas, r)
+        public CapaTanh(int num, int num_neuronas, Random r) : base(num, num_neuronas, r)
         {
         }
         public override double derivada(double x)
