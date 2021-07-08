@@ -88,7 +88,6 @@
     <Compile Include="MLP\capas\capaRelu.cs" />
     <Compile Include="MLP\capas\capaSig.cs" />
     <Compile Include="MLP\capas\capaTanh.cs" />
-    <Compile Include="MLP\Class1.cs" />
     <Compile Include="MLP\Mlp.cs" />
     <Compile Include="MLP\neurona.cs" />
     <Compile Include="Program.cs" />

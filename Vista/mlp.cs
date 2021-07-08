@@ -4,35 +4,35 @@ using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
+using System.Windows.Forms;
+using LiveCharts.Configurations;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using COVID.MLP;
 
 namespace COVID.Vista
 {
     public partial class mlp : Form
     {
         database db;
+        Mlp red;
         public mlp(database db)
         {
             this.db = db;
+            //this.red = red;
             InitializeComponent();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void mlp_Load(object sender, EventArgs e)
         {
 
             Refresh();
+            f5();
           
         }
         public void Refresh()
@@ -58,28 +58,83 @@ namespace COVID.Vista
             foreach(var i in data)
             {
                 fechas.Add(i.Key);
-                valores.Add(i.Value);
+                valores.Add(db.NormInverse(i.Value));
             }
 
- 
-            series.Add(new LineSeries() { Title = "contaigos" ,Values = new ChartValues<double>(valores) });
+            series.Add(new LineSeries() { Title = "Contagios" ,Values = new ChartValues<double>(valores) });
+            cartesianChart1.Series = series;
+            //cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
+            //{
+            //    Title = "Número de Días",
+            //    Labels = fechas.ToArray()
 
+            //});
+            
+        }
+        public void f5()
+        {
+            cartesianChart1.Series.Clear();
+            SeriesCollection series = new SeriesCollection();
+            Dictionary<string, double> data = db.grafico1();
+            List<double> valores = new List<double>();
+            List<string> fechas = new List<string>();
+
+            foreach (var i in data)
+            {
+                fechas.Add(i.Key);
+                valores.Add(db.NormInverse(i.Value));
+            }
+
+            series.Add(new LineSeries() { Title = "Contagios", Values = new ChartValues<double>(valores) });
             cartesianChart1.Series = series;
 
-            cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
-            {
-                Title = "Número de Días",
-                Labels = fechas.ToArray()
-
-            });
-            //cartesianChart1.AxisY.Add(new LiveCharts.Wpf.Axis
+            //cartesianChart1.Series = new SeriesCollection
             //{
-            //    Title = "Número de Contagiados",
-            //    //LabelFormatter = value => value.ToString("C")
-            //    //LabelFormatter = 
-            //});
+            //    new LineSeries
+            //    {
+            //        Title= "contagios",
+            //        Values = new ChartValues<DateTimePoint>()
+            //        {
+            //            new DateTimePoint(new DateTime(2008,1,2),2),
+            //            new DateTimePoint(new DateTime(2008,1,3),4),
+            //            new DateTimePoint(new DateTime(2008,1,4),6),
+            //            new DateTimePoint(new DateTime(2008,1,5),8)
+            //        }
+            //    }
+            //};
+            //cartesianChart1.LegendLocation = LegendLocation.Right;
+        }
 
-            cartesianChart1.LegendLocation = LiveCharts.LegendLocation.Right;
+        private void button2_Click(object sender, EventArgs e) 
+        {
+            //double[] input= null;
+            // entrada a la red, ultimo dia del que se tenga registro.
+            //double[] salida =db.NormInverse(red.Forward_propagation(input));
+
+            int[] salida = new int[] { 1, 2 , 3 , 4, 5, 6, 7 ,8 ,9 ,10};
+            // grid view 2
+            int rowEscribir = dataGridView2.Rows.Count -1;
+
+            //dataGridView2.Rows.Add();
+
+            dataGridView2.Rows[rowEscribir].Cells[0].Value = salida[0];
+            dataGridView2.Rows[rowEscribir].Cells[1].Value = salida[1];
+            dataGridView2.Rows[rowEscribir].Cells[2].Value = salida[2];
+            dataGridView2.Rows[rowEscribir].Cells[3].Value = salida[3];
+            dataGridView2.Rows[rowEscribir].Cells[4].Value = salida[4];
+            dataGridView2.Rows[rowEscribir].Cells[5].Value = salida[5];
+            dataGridView2.Rows[rowEscribir].Cells[6].Value = salida[6];
+            dataGridView2.Rows[rowEscribir].Cells[7].Value = salida[7];
+            dataGridView2.Rows[rowEscribir].Cells[8].Value = salida[8];
+            dataGridView2.Rows[rowEscribir].Cells[9].Value = salida[9];
+
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
+    
 }

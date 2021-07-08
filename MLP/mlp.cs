@@ -15,11 +15,12 @@ namespace COVID.MLP
         public List<double[,]> deltas;
         public Mlp(List<capa> layers) // la longitud del vector indica la cantida de capas , y los valores idican la cantidad de neuronas por cada capa
         {
-            this.capas = layers; //capas
+            capas = new List<capa>();
+            capas = layers; //capas
         }
 
         public double[] Forward_propagation(double[] entrada) //Fordward pass  activación de todas las capas
-        {                                                
+        {
             double[] salida = new double[0];
             for (int i = 0; i < capas.Count; i++)
             {
@@ -156,6 +157,6 @@ namespace COVID.MLP
             error = error / inputs.Count;
             return error;
         }
-        
+
     }
 }
