@@ -109,6 +109,7 @@ namespace COVID.Vista
 
         private void button2_Click(object sender, EventArgs e) 
         {
+            // seleccinar el ultimo registro de la base de datos
             double[] input= db.datax()[320];
             foreach (var x in input)
                 Console.Write(x);

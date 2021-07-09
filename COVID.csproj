@@ -102,6 +102,18 @@
     <Compile Include="Vista\mlp.Designer.cs">
       <DependentUpon>mlp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\principal.Designer.cs">
+      <DependentUpon>principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\som.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\som.Designer.cs">
+      <DependentUpon>som.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

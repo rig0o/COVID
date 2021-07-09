@@ -16,7 +16,7 @@ namespace COVID
     {
         static List<double[]> data;
         static List<double[]> target;
-        static string MlpPath = @"D:\SW\Entrenada.bin";          ///antes se llamaba Entrenada
+       
         static string SomPath = @"D:\SW\EntrenamientoSOM.bin";
         static Mlp red;
 

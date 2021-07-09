@@ -100,7 +100,7 @@ namespace COVID.MLP // VERSION ANTIGUA SOLO MLP
                     for (int k = 0; k < capas[i].neuronas[j].w.Length; k++)
                     {
                         capas[i].neuronas[j].w[k] -= alfa * deltas[i][j, k];
-                        Console.Write();
+                        //Console.Write();
                     }
 
                 }
