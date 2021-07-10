@@ -23,35 +23,38 @@ namespace COVID.Vista
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //this.SetVisibleCore(false);
+            this.SetVisibleCore(false);
             database db = new database();
             red = entrenamiento.carga();
-            
-            new mlp(db,red).ShowDialog();
+
+            new mlp(db, red).ShowDialog();
+            this.Dispose();
         }
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-       
+            this.SetVisibleCore(false);
             new som().ShowDialog();
+
+            this.Dispose();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            base.OnFormClosing(e);
+            //base.OnFormClosing(e);
 
-            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+            //if (e.CloseReason == CloseReason.WindowsShutDown) return;
 
-            // Confirm user wants to close
-            switch (MessageBox.Show(this, "Are you sure you want to close?", "Closing", MessageBoxButtons.YesNo))
-            {
-                case DialogResult.No:
-                    e.Cancel = true;
-                    break;
-                default:
-                    break;
-            }
+            //// Confirm user wants to close
+            //switch (MessageBox.Show(this, "Are you sure you want to close?", "Closing", MessageBoxButtons.YesNo))
+            //{
+            //    case DialogResult.No:
+            //        e.Cancel = true;
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
     }
 }

@@ -125,8 +125,9 @@ namespace COVID.Vista
 
         private void button3_Click(object sender, EventArgs e) // volver
         {
-            //this.Close();
-            //new principal().ShowDialog();
+            this.SetVisibleCore(false);
+            new principal().ShowDialog();
+            this.Dispose();
         }
 
         private void button4_Click(object sender, EventArgs e)

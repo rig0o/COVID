@@ -46,8 +46,10 @@ namespace COVID.Vista
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -63,11 +65,11 @@ namespace COVID.Vista
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(291, 415);
+            this.button1.Location = new System.Drawing.Point(222, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(210, 59);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Entrenar mlp";
+            this.button1.Text = "Entrenar red";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -171,19 +173,19 @@ namespace COVID.Vista
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(291, 261);
+            this.button2.Location = new System.Drawing.Point(3, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(213, 59);
             this.button2.TabIndex = 4;
-            this.button2.Text = "Predecir";
+            this.button2.Text = "Predecir contagios";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(291, 290);
+            this.button3.Location = new System.Drawing.Point(3, 68);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(213, 56);
             this.button3.TabIndex = 5;
             this.button3.Text = "Volver";
             this.button3.UseVisualStyleBackColor = true;
@@ -191,25 +193,33 @@ namespace COVID.Vista
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(291, 319);
+            this.button4.Location = new System.Drawing.Point(222, 68);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(210, 56);
             this.button4.TabIndex = 6;
-            this.button4.Text = "Reporte";
+            this.button4.Text = "Generar reporte";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.button2);
+            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.button3);
+            this.flowLayoutPanel1.Controls.Add(this.button4);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(460, 286);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(436, 128);
+            this.flowLayoutPanel1.TabIndex = 7;
             // 
             // mlp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1060, 450);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.cartesianChart1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "mlp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -217,6 +227,7 @@ namespace COVID.Vista
             this.Load += new System.EventHandler(this.mlp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -240,5 +251,6 @@ namespace COVID.Vista
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

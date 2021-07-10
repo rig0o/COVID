@@ -47,15 +47,15 @@ namespace COVID.Vista
 
             cartesianChart2.Series.Add(new HeatSeries
             {
-                Title = "Neurna",
+                Title = "Neurona",
                 Values = new ChartValues<HeatPoint>(puntos2),
                 DataLabels = false
             });
             cartesianChart1.Series.Add(new HeatSeries
             {
-                Title = "Neurna",
+                Title = "Neurona",
                 Values = new ChartValues<HeatPoint>(puntos),
-                DataLabels = false
+                DataLabels = true
             });
 
             cartesianChart1.AxisX.Add(new Axis
@@ -98,7 +98,9 @@ namespace COVID.Vista
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            this.SetVisibleCore(false);
+            new principal().ShowDialog();
+            this.Dispose();
         }
 
         private void button3_Click(object sender, EventArgs e)
