@@ -23,18 +23,22 @@ namespace COVID.SOM
             Random r = new Random();
             for (int iteracion = epoch; iteracion > 0; iteracion--)
             {
-                int k = r.Next(0,datax.Count-1); 
-                double[] input = datax[k];
-                nodo bmu = getBMU(datax[k]);
+                //for (int k = 0; k<datax.Count;k++)
+                //{
+                    int rand = r.Next(0, datax.Count - 1);
+                    double[] input = datax[rand];
+                    nodo bmu = getBMU(input);
 
-                for (int i = 0; i < matriz.ancho; i++)              //recorre para actualizar los pesos
-                {
-                    for (int j = 0; j < matriz.alto; j++)
+                    for (int i = 0; i < matriz.ancho; i++)              //recorre para actualizar los pesos
                     {
-                        nodo nodoTemp = matriz.getNodo(i, j);
-                        setPesos(nodoTemp, bmu, alfa, iteracion, epoch, input);
+                        for (int j = 0; j < matriz.alto; j++)
+                        {
+                            nodo nodoTemp = matriz.getNodo(i, j);
+                            setPesos(nodoTemp, bmu, alfa, iteracion, epoch, input);
+                        }
                     }
-                }
+                //}
+
             }
         }
         public void clasificar(List<double[]> datax)
@@ -51,6 +55,7 @@ namespace COVID.SOM
         {
             nodo bmu = matriz.getNodo(0, 0);
             double mejorDist = distEuclediana(bmu.getW(), input);
+
             double dist;
 
             for (int i = 0; i < matriz.ancho; i++)
@@ -61,6 +66,7 @@ namespace COVID.SOM
                     dist = distEuclediana(compara.getW(), input);
                     if (dist < mejorDist)
                     {
+                        Console.WriteLine("Cambio de BMU");
                         bmu = matriz.getNodo(i, j);
                         mejorDist = dist;
                     }
@@ -106,8 +112,8 @@ namespace COVID.SOM
         }
         public double landa(int epoc) // constante landa  --> epoc= iteraciones a realizar .
         {
-            return epoc / Math.Log(radio0()); // numero iteraciones/radioinicial --> version tesis
-                                              //return epoc/radio0();                                            --> version paper
+            //return epoc / Math.Log(radio0()); // numero iteraciones/radioinicial --> version tesis
+            return epoc / radio0();           //return epoc/radio0(); --> version paper
         }
         public double radio(int actual, int epoc)   // Ecuacion 2a  radius of the neighborhood
         {                                           // actual = iteracion actual; epoc = numero de iteraciones a realizar 
@@ -115,8 +121,8 @@ namespace COVID.SOM
         }
         public double learning(double alfa0, int actual, int epocas)  // Ecuacion  3b con variante en la division
         {
-            return alfa0 * Math.Exp(-actual / epocas);        // L0, alfa0 inicial * exp(-iteracion/epocas) --> version tesis
-                                                              //return alfa0 * Math.Exp(-actual / landa());   //L0, alfa0 inicial * exp(-iteracion/landa) -->  version paper 
+           // return alfa0 * Math.Exp(-actual / epocas);        // L0, alfa0 inicial * exp(-iteracion/epocas) --> version tesis
+           return alfa0 * Math.Exp(-actual / landa(epocas));   //L0, alfa0 inicial * exp(-iteracion/landa) -->  version paper 
         }
     }
 }

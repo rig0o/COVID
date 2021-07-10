@@ -20,7 +20,7 @@ namespace COVID.SOM
 
             for (int i = 0; i < this.ancho; i++)
             {
-                for (int j = 0; j < this.alto; i++)
+                for (int j = 0; j < this.alto; j ++)
                 {
                     grid[i, j] = new nodo(num);
                     grid[i, j].setX(i);

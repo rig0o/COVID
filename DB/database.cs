@@ -9,7 +9,7 @@ namespace COVID.DB
 {
     public class database
     {
-        private const string ConnectionString = @"Data Source=D:\SW\Dataset.db";
+        private const string ConnectionString = @"Data Source=C:\SW\Dataset.db";
 		public List<double[]> data;
 		public List<double[]> target;
 		public Dictionary<string, double> dataGrafico;
@@ -114,6 +114,30 @@ namespace COVID.DB
 		{
 
 			return	 Math.Round(x * (385 - 4) + 4);  //return value * (max - min) + min;
+
+		}
+		public List<double[]> iris()
+		{
+			data = new List<double[]>();
+			double[] salida;
+
+			SQLiteConnection connect = new SQLiteConnection(ConnectionString);
+			connect.Open();
+			string query = "SELECT * FROM Iris";
+			SQLiteCommand comando = new SQLiteCommand(query, connect);
+			SQLiteDataReader datos = comando.ExecuteReader();
+
+			while (datos.Read())
+			{
+				salida = new double[4];
+				salida[0] = datos.GetDouble(0);
+				salida[1] = datos.GetDouble(1);
+				salida[2] = datos.GetDouble(2);
+				salida[3] = datos.GetDouble(3);
+				data.Add(salida);
+			}
+			connect.Close();
+			return data;
 
 		}
 	}

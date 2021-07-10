@@ -18,7 +18,7 @@ namespace COVID.MLP
         static List<double[]> entrada;
         static List<double[]> salida;
         static database db;
-        static string MlpPath = @"D:\SW\EntrenamientoMLP.bin";
+        static string MlpPath = @"C:\SW\EntrenamientoMLP.bin";
 
         static public void fit()
         {

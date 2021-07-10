@@ -10,24 +10,25 @@ using COVID.DB;
 
 namespace COVID.SOM
 {
-    class EntrenarSom
+    public static class EntrenarSom
     {
         static som self;
         static matriz mapa;
         static database db;
         static List<double[]> entrada;
-        static string SomPath = @"D:\SW\EntrenamientoSOM.bin";
+        static string SomPath = @"C:\SW\EntrenamientoSOM.bin";
 
         public static void fit()
         {
             db = new database();
             entrada = db.datax();
+            //entrada = db.iris();
 
             // datax
-            mapa = new matriz(14, 10, 10);
+            mapa = new matriz(14,10, 10);// cantidada de pesos, ancho, alto
             self = new som(mapa);
 
-            self.entrenar(entrada,0.1,1000);  //REVISAR VALORES
+            self.entrenar(entrada,0.030,500);  //REVISAR VALORES
 
             FileStream fs = new FileStream(SomPath, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
@@ -44,8 +45,6 @@ namespace COVID.SOM
             {
                 fs.Close();
             }
-
-
 
         }
         public static void clasificar()
