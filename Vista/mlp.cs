@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using COVID.MLP;
+using SpreadsheetLight;
 
 namespace COVID.Vista
 {
@@ -121,6 +122,63 @@ namespace COVID.Vista
 
         }
         #endregion
+
+        private void button3_Click(object sender, EventArgs e) // volver
+        {
+            //this.Close();
+            //new principal().ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SLDocument sl = new SLDocument();           ///objeto paquete
+            SLStyle style = new SLStyle();              ///estilos
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();///guardado de archivo
+
+            style.Font.FontSize = 15;
+            style.Font.Bold = true;
+
+            int numcol = 1;
+            foreach (DataGridViewColumn column in dataGridView2.Columns)          ///recorrer columnas
+            {
+                sl.SetCellValue(1, numcol, column.HeaderText.ToString());
+                sl.SetCellStyle(1, numcol, style);
+                numcol++;
+            }
+
+            int numfila = 2; ///fila excel
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                sl.SetCellValue(numfila, 1, row.Cells[0].Value.ToString());      ///celda,columna,valor
+                sl.SetCellValue(numfila, 2, row.Cells[1].Value.ToString());
+                sl.SetCellValue(numfila, 3, row.Cells[2].Value.ToString());
+                sl.SetCellValue(numfila, 4, row.Cells[3].Value.ToString());
+                sl.SetCellValue(numfila, 5, row.Cells[4].Value.ToString());
+                sl.SetCellValue(numfila, 6, row.Cells[5].Value.ToString());
+                sl.SetCellValue(numfila, 7, row.Cells[6].Value.ToString());
+                sl.SetCellValue(numfila, 8, row.Cells[7].Value.ToString());
+                sl.SetCellValue(numfila, 9, row.Cells[8].Value.ToString());
+                sl.SetCellValue(numfila, 10, row.Cells[9].Value.ToString());
+                numfila++;
+            }
+            ///sl.SaveAs(@"C:\SW\ReporteMLP.xlsx");                     ///guardado por defecto
+
+            saveFileDialog1.Title = "Guardar archivo";                  ///guardado por directorio
+            saveFileDialog1.CheckPathExists = true;
+            saveFileDialog1.DefaultExt = "xlsx";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    sl.SaveAs(saveFileDialog1.FileName);
+                    MessageBox.Show("Archivo exportado con éxito");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 
 }

@@ -13,6 +13,7 @@ namespace COVID.SOM
         private int x;
         private int y;
         private int contador;
+        private List<string> clasifica2; // dia objeto o un valor fecha.
 
         public nodo(int num)                      //Constructor de neurona, inicializa los pesos de cada neurona
         {

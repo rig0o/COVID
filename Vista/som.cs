@@ -39,7 +39,7 @@ namespace COVID.Vista
 
             cartesianChart1.AxisX.Add(new Axis
             {
-                LabelsRotation = -15,
+                //LabelsRotation = -15,
                 Labels = new[]
                 {
                     "1",
@@ -70,8 +70,14 @@ namespace COVID.Vista
                     "8",
                     "9",
                     "10"
-                }
+                },
+                Separator = new Separator { Step = 1 }
             });
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
