@@ -10,15 +10,21 @@ namespace COVID.MLP // VERSION ANTIGUA SOLO MLP
     [Serializable]
     public class Mlp 
     {
+        #region Atributos
         public List<Capa> capas;
         public List<double[]> sigma;
         public List<double[,]> deltas;
+        #endregion
+
+        #region Constructors
         public Mlp(List<Capa> layers) // la longitud del vector indica la cantida de capas , y los valores idican la cantidad de neuronas por cada capa
         {
             capas = new List<Capa>();
             capas = layers; //capas
         }
+        #endregion
 
+        #region Methods
         public double[] Forward_propagation(double[] entrada) //Fordward pass  activación de todas las capas
         {
             double[] salida = new double[0];
@@ -158,6 +164,6 @@ namespace COVID.MLP // VERSION ANTIGUA SOLO MLP
             error = error / inputs.Count;
             return error;
         }
-
+        #endregion
     }
 }

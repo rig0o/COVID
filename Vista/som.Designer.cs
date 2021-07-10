@@ -29,12 +29,32 @@ namespace COVID.Vista
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            this.SuspendLayout();
+            // 
+            // cartesianChart1
+            // 
+            this.cartesianChart1.Location = new System.Drawing.Point(12, 12);
+            this.cartesianChart1.Name = "cartesianChart1";
+            this.cartesianChart1.Size = new System.Drawing.Size(593, 314);
+            this.cartesianChart1.TabIndex = 0;
+            this.cartesianChart1.Text = "cartesianChart1";
+            // 
+            // som
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(633, 423);
+            this.Controls.Add(this.cartesianChart1);
+            this.Name = "som";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "som";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private LiveCharts.WinForms.CartesianChart cartesianChart1;
     }
 }

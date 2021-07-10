@@ -33,8 +33,9 @@ namespace COVID.MLP
             capas.Add(new CapaRelu(14, 10, r));   //capa oculta Sigmoide 
             capas.Add(new CapaSig(10, 10, r));    //capa salida
             red = new Mlp(capas);
-
-            while (!red.Entrenar(entrada, salida, 0.1, 0.01, 20000))  //entrada a la red - salida esperada - aprendizaje - error maximo permitido - iteraciones
+            //0.1, 0.075, 90000 -> malo
+            //  0.1, 0.01, 20000 bueno
+            while (!red.Entrenar(entrada, salida, 0.09, 0.01, 20000))  //entrada a la red - salida esperada - aprendizaje - error maximo permitido - iteraciones
             {
                 Random rand = new Random();
                 capas = new List<Capa>();

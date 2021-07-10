@@ -1,4 +1,6 @@
-﻿using System;
+﻿using COVID.DB;
+using COVID.MLP;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,24 @@ namespace COVID.Vista
 {
     public partial class principal : Form
     {
+        static Mlp red;
+
         public principal()
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            database db = new database();
+            red = entrenamiento.carga();
+
+            new mlp(db,red).ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new som().ShowDialog();
         }
     }
 }

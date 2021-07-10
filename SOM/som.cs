@@ -6,30 +6,44 @@ namespace COVID.SOM
     [Serializable]
     public class som
     {
+        #region Parametros
         public matriz matriz;
         public som(matriz grid)
         {
             this.matriz = grid;
         }
-        public void entrenar(List<double[]> datax, double alfa, int epoch)
-        {
+        #endregion
 
+        public som()
+        {
+        }
+
+        public void entrenar(List<double[]> datax, double alfa, int epoch)//  500 o  325 Filas 
+        {
+            Random r = new Random();
             for (int iteracion = epoch; iteracion > 0; iteracion--)
             {
-                for (int k = 0; k < datax.Count; k++)                   //recorre la data
-                {
-                    double[] input = datax[k];
-                    nodo bmu = getBMU(datax[k]);
+                int k = r.Next(0,datax.Count-1); 
+                double[] input = datax[k];
+                nodo bmu = getBMU(datax[k]);
 
-                    for (int i = 0; i < matriz.ancho; i++)              //recorre para actualizar los pesos
+                for (int i = 0; i < matriz.ancho; i++)              //recorre para actualizar los pesos
+                {
+                    for (int j = 0; j < matriz.alto; j++)
                     {
-                        for (int j = 0; j < matriz.alto; j++)
-                        {
-                            nodo nodoTemp = matriz.getNodo(i, j);
-                            setPesos(nodoTemp, bmu, alfa, iteracion, epoch, input);
-                        }
+                        nodo nodoTemp = matriz.getNodo(i, j);
+                        setPesos(nodoTemp, bmu, alfa, iteracion, epoch, input);
                     }
                 }
+            }
+        }
+        public void clasificar(List<double[]> datax)
+        {
+            for (int k = 0; k < datax.Count; k++)  //recorre la data
+            {
+                double[] input = datax[k];
+                nodo bmu = getBMU(datax[k]);
+               
             }
         }
 
@@ -52,6 +66,7 @@ namespace COVID.SOM
                     }
                 }
             }
+            bmu.activacion();
             return bmu;
         }
         public void setPesos(nodo nodo, nodo BMU, double alfa0, int actual, int epoc, double[] input) // Se actualizan los pesos de la neuronas de la capa de salida

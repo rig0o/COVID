@@ -19,7 +19,7 @@ namespace COVID.SOM
             Random r = new Random();              //inicializar los pesos de la red neuronal
             w = new double[num];
             for (int i = 0; i < num; i++)
-                w[i] = 10 * r.NextDouble() - 5;   // Rango en el cual se inician los pesos -0.5 a 0.5
+                w[i] = 2 * r.NextDouble() - 1;   // Rango en el cual se inician los pesos -0.5 a 0.5
         }
         public int getX()
         {

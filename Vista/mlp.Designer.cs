@@ -189,7 +189,7 @@ namespace COVID.Vista
             this.Controls.Add(this.dataGridView1);
             this.Name = "mlp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "mlp";
+            this.Text = "Predicción de contagios";
             this.Load += new System.EventHandler(this.mlp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();

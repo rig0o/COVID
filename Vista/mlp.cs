@@ -32,9 +32,11 @@ namespace COVID.Vista
         {
 
             Refresh();
-            f5();
+           f5();
           
         }
+
+        #region F5
         public void Refresh()
         {
             SQLiteCommand cmd = db.tabla1();
@@ -42,36 +44,6 @@ namespace COVID.Vista
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(cmd);
             adapter.Fill(dt);
             dataGridView1.DataSource = dt;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            entrenamiento.fit();
-            ////Init data
-            //cartesianChart1.Series.Clear();
-            //SeriesCollection series = new SeriesCollection();
-
-            //Dictionary<string, double> data = db.grafico1();
-
-            //List<double> valores = new List<double>();
-            //List<string> fechas = new List<string>();
-
-            //foreach(var i in data)
-            //{
-            //    fechas.Add(i.Key);
-            //    valores.Add(db.NormInverse(i.Value));
-            //}
-
-            //series.Add(new LineSeries() { Title = "Contagios" ,Values = new ChartValues<double>(valores) });
-            //cartesianChart1.Series = series;
-            ////cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
-            ////{
-            ////    Title = "Número de Días",
-            ////    Labels = fechas.ToArray()
-
-            ////});
-            
         }
         public void f5()
         {
@@ -104,20 +76,29 @@ namespace COVID.Vista
             //        }
             //    }
             //};
-            //cartesianChart1.LegendLocation = LegendLocation.Right;
+            cartesianChart1.LegendLocation = LegendLocation.Right;
         }
+        #endregion
 
-        private void button2_Click(object sender, EventArgs e) 
+        #region Botones
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            entrenamiento.fit();
+          
+            
+        }
+        private void button2_Click(object sender, EventArgs e)
         {
             // seleccinar el ultimo registro de la base de datos
-            double[] input= db.datax()[320];
+            double[] input = db.datax()[320];
             foreach (var x in input)
                 Console.Write(x);
-            double[] salida =db.NormInverse(red.Forward_propagation(input));
+            double[] salida = db.NormInverse(red.Forward_propagation(input));
 
 
             // grid view 2 - Actualizacion
-            int rowEscribir = dataGridView2.Rows.Count -1;
+            int rowEscribir = dataGridView2.Rows.Count - 1;
             //dataGridView2.Rows.Add();
             dataGridView2.Rows[rowEscribir].Cells[0].Value = salida[0];
             dataGridView2.Rows[rowEscribir].Cells[1].Value = salida[1];
@@ -132,11 +113,14 @@ namespace COVID.Vista
 
 
         }
+        #endregion
 
+        #region Tablas
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+        #endregion
     }
-    
+
 }
