@@ -29,15 +29,15 @@ namespace COVID.Vista
             InitializeComponent();
         }
 
+        #region F5
         private void mlp_Load(object sender, EventArgs e)
         {
 
             Refresh();
-           f5();
-          
+            f5();
+
         }
 
-        #region F5
         public void Refresh()
         {
             SQLiteCommand cmd = db.tabla1();
@@ -46,7 +46,7 @@ namespace COVID.Vista
             adapter.Fill(dt);
             dataGridView1.DataSource = dt;
         }
-        public void f5()
+        public void f5() 
         {
             cartesianChart1.Series.Clear();
             SeriesCollection series = new SeriesCollection();
@@ -57,46 +57,28 @@ namespace COVID.Vista
             foreach (var i in data)
             {
                 fechas.Add(i.Key);
-                valores.Add(db.NormInverse(i.Value));
+                valores.Add(i.Value);
             }
 
             series.Add(new LineSeries() { Title = "Contagios", Values = new ChartValues<double>(valores) });
             cartesianChart1.Series = series;
-
-            //cartesianChart1.Series = new SeriesCollection
-            //{
-            //    new LineSeries
-            //    {
-            //        Title= "contagios",
-            //        Values = new ChartValues<DateTimePoint>()
-            //        {
-            //            new DateTimePoint(new DateTime(2008,1,2),2),
-            //            new DateTimePoint(new DateTime(2008,1,3),4),
-            //            new DateTimePoint(new DateTime(2008,1,4),6),
-            //            new DateTimePoint(new DateTime(2008,1,5),8)
-            //        }
-            //    }
-            //};
             cartesianChart1.LegendLocation = LegendLocation.Right;
         }
         #endregion
 
         #region Botones
-        private void button1_Click(object sender, EventArgs e)
+       
+        private void button1_Click(object sender, EventArgs e)            ///btnEntrenar
         {
-
             entrenamiento.fit();
-          
-            
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // seleccinar el ultimo registro de la base de datos
-            double[] input = db.datax()[320];
+        private void button2_Click(object sender, EventArgs e)            ///btnPredecir
+        {                                                                       /////////////////////////////////////////////////////////////////////////////////////////////
+            // seleccinar el ultimo registro de la base de datos                ------------------------------------------Revisar-------------------------------------------
+            double[] input = db.datax()[320];                                   /////////////////////////////////////////////////////////////////////////////////////////////
             foreach (var x in input)
                 Console.Write(x);
             double[] salida = db.NormInverse(red.Forward_propagation(input));
-
 
             // grid view 2 - Actualizacion
             int rowEscribir = dataGridView2.Rows.Count - 1;
@@ -111,26 +93,14 @@ namespace COVID.Vista
             dataGridView2.Rows[rowEscribir].Cells[7].Value = salida[7];
             dataGridView2.Rows[rowEscribir].Cells[8].Value = salida[8];
             dataGridView2.Rows[rowEscribir].Cells[9].Value = salida[9];
-
-
         }
-        #endregion
-
-        #region Tablas
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        #endregion
-
-        private void button3_Click(object sender, EventArgs e) // volver
+        private void button3_Click(object sender, EventArgs e)              //btnVolver
         {
             this.SetVisibleCore(false);
             new principal().ShowDialog();
             this.Dispose();
         }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)              ///btnGenerarReporte
         {
             SLDocument sl = new SLDocument();           ///objeto paquete
             SLStyle style = new SLStyle();              ///estilos
@@ -163,7 +133,6 @@ namespace COVID.Vista
                 numfila++;
             }
             ///sl.SaveAs(@"C:\SW\ReporteMLP.xlsx");                     ///guardado por defecto
-
             saveFileDialog1.Title = "Guardar archivo";                  ///guardado por directorio
             saveFileDialog1.CheckPathExists = true;
             saveFileDialog1.DefaultExt = "xlsx";
@@ -180,6 +149,16 @@ namespace COVID.Vista
                 }
             }
         }
+
+        #endregion
+
+        #region Tablas
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        #endregion
+        
     }
 
 }

@@ -16,7 +16,10 @@ namespace COVID.SOM
         static matriz mapa;
         static database db;
         static List<double[]> entrada;
-        static string SomPath = @"C:\SW\EntrenamientoSOM.bin";
+        
+                static string SomPath = @"C:\SW\EntrenamientoSOMPRIMERDIA.bin";
+
+       // static string SomPath = @"C:\SW\EntrenamientoSOM.bin";
 
         public static void fit()
         {

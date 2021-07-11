@@ -29,6 +29,7 @@ namespace COVID.Vista
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mlp));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
@@ -60,7 +61,7 @@ namespace COVID.Vista
             this.dataGridView1.Location = new System.Drawing.Point(12, 261);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(273, 177);
+            this.dataGridView1.Size = new System.Drawing.Size(286, 177);
             this.dataGridView1.TabIndex = 0;
             // 
             // button1
@@ -216,11 +217,14 @@ namespace COVID.Vista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1060, 450);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.cartesianChart1);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "mlp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Predicción de contagios";
