@@ -13,15 +13,16 @@ namespace COVID.SOM
         private int x;
         private int y;
         private int contador;
-        private List<string> clasifica2; // dia objeto o un valor fecha.
+        private List<string> clasifica2;
 
-        public nodo(int num)                      //Constructor de neurona, inicializa los pesos de cada neurona
-        {
-            Random r = new Random();              //inicializar los pesos de la red neuronal
+        public nodo(int num, Random r)                    
+        {         
             w = new double[num];
             for (int i = 0; i < num; i++)
-                w[i] = 2*r.NextDouble()-1;   // Rango en el cual se inician los pesos -0.5 a 0.5
+                w[i] = r.NextDouble();  
         }
+        #region Geter&Seter
+
         public int getX()
         {
             return x;
@@ -53,6 +54,15 @@ namespace COVID.SOM
         public double getContagios()
         {
             return w[2];
+        }
+        #endregion
+
+        public void setPesos(double alfa, double theta, double[] input) // Se actualizan los pesos de la neuronas de la capa de salida
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                this.w[i] += theta * alfa * (input[i] - this.w[i]);  // Ecuacion 3a peso anterior + theta*alfa*diferencia(vector actual y pesos)
+            }
         }
     }
 }

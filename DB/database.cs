@@ -15,8 +15,6 @@ namespace COVID.DB
 		public List<string[]> dataCOVID;
 		public Dictionary<string, double> dataGrafico;
 
-
-
 		public List<double[]> datax()
 		{
 			data = new List<double[]>();
@@ -130,11 +128,10 @@ namespace COVID.DB
 			SQLiteDataReader datos = comando.ExecuteReader();
 
 			while (datos.Read())
-			{
-				
+			{	
 				entrada = new string[20];
-				entrada[0] = datos.GetString(0); //Fecha
-				entrada[1] = datos.GetString(1); //
+				entrada[0] = datos.GetString(0); 
+				entrada[1] = datos.GetString(1); 
 				entrada[2] = datos.GetString(2);
 				entrada[3] = datos.GetString(3);
 				entrada[4] = datos.GetString(4);

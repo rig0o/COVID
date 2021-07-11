@@ -17,21 +17,21 @@ namespace COVID.SOM
         static database db;
         static List<double[]> entrada;
         
-                static string SomPath = @"C:\SW\EntrenamientoSOMPRIMERDIA.bin";
+                static string SomPath = @"C:\SW\EntrenamientoSOM.bin";
 
        // static string SomPath = @"C:\SW\EntrenamientoSOM.bin";
 
         public static void fit()
         {
             db = new database();
-            entrada = db.datax();
-            //entrada = db.iris();
+            entrada = db.dataSom();
+            Random r = new Random();
 
             // datax
-            mapa = new matriz(14,10, 10);// cantidada de pesos, ancho, alto
+            mapa = new matriz(19,15, 15,r);// cantidada de pesos, ancho, alto
             self = new som(mapa);
 
-            self.entrenar(entrada,0.030,500);  //REVISAR VALORES
+            self.entrenar(entrada,0.07,1000);  //REVISAR VALORES
 
             FileStream fs = new FileStream(SomPath, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();

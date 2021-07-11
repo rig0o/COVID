@@ -25,7 +25,7 @@ namespace COVID.Vista
 
         public som()
         {
-            //EntrenarSom.fit();
+            EntrenarSom.fit();
             mapa = EntrenarSom.carga();
             InitializeComponent();
             refresh();
