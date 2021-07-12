@@ -17,7 +17,7 @@ namespace COVID.SOM
         static database db;
         static List<double[]> entrada;
         
-                static string SomPath = @"C:\SW\EntrenamientoSOM.bin";
+        static string SomPath = @"C:\SW\EntrenamientoSOM15N.bin";
 
        // static string SomPath = @"C:\SW\EntrenamientoSOM.bin";
 
@@ -27,11 +27,10 @@ namespace COVID.SOM
             entrada = db.dataSom();
             Random r = new Random();
 
-            // datax
-            mapa = new matriz(19,15, 15,r);// cantidada de pesos, ancho, alto
+            mapa = new matriz(19,10,10,r);// cantidada de pesos, ancho, alto
             self = new som(mapa);
 
-            self.entrenar(entrada,0.07,1000);  //REVISAR VALORES
+            self.entrenar(entrada,0.1,500);  //REVISAR VALORES
 
             FileStream fs = new FileStream(SomPath, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
@@ -50,9 +49,13 @@ namespace COVID.SOM
             }
 
         }
-        public static void clasificar()
+        public static som clasificar(som mapa)
         {
-            //self.clasificar();
+            db = new database();
+            entrada = db.dataSom();
+            self = mapa;
+            self.clasificar(entrada);
+            return self;
         }
         public static som carga()
         {

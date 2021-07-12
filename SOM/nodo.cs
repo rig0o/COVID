@@ -13,10 +13,11 @@ namespace COVID.SOM
         private int x;
         private int y;
         private int contador;
-        private List<string> clasifica2;
+        public List<int> clasifica2;
 
         public nodo(int num, Random r)                    
-        {         
+        {
+            clasifica2 = new List<int>();
             w = new double[num];
             for (int i = 0; i < num; i++)
                 w[i] = r.NextDouble();  
@@ -63,6 +64,11 @@ namespace COVID.SOM
             {
                 this.w[i] += theta * alfa * (input[i] - this.w[i]);  // Ecuacion 3a peso anterior + theta*alfa*diferencia(vector actual y pesos)
             }
+        }
+
+        internal void clasificador(int k)
+        {
+            clasifica2.Add(k);
         }
     }
 }

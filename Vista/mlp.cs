@@ -64,21 +64,44 @@ namespace COVID.Vista
             cartesianChart1.Series = series;
             cartesianChart1.LegendLocation = LegendLocation.Right;
         }
+        public void f5(double[] salida)
+        {
+            cartesianChart1.Series.Clear();
+            SeriesCollection series = new SeriesCollection();
+            Dictionary<string, double> data = db.grafico1();
+            List<double> valores = new List<double>();
+            List<string> fechas = new List<string>();
+            List<double> prediccion = new List<double>();
+
+            foreach (var i in data)
+            {
+                fechas.Add(i.Key);
+                valores.Add(i.Value);
+                prediccion.Add(i.Value);
+            }
+            foreach (var i in salida)
+            {
+                prediccion.Add(i);
+            }
+
+            series.Add(new LineSeries() { Title = "Contagios", Values = new ChartValues<double>(valores) });
+            series.Add(new LineSeries() { Title = "Predicción", Values = new ChartValues<double>(prediccion)});
+            cartesianChart1.Series = series;
+            cartesianChart1.LegendLocation = LegendLocation.Right;
+        }
         #endregion
 
         #region Botones
-       
+
         private void button1_Click(object sender, EventArgs e)            ///btnEntrenar
         {
             entrenamiento.fit();
         }
         private void button2_Click(object sender, EventArgs e)            ///btnPredecir
-        {                                                                       /////////////////////////////////////////////////////////////////////////////////////////////
-            // seleccinar el ultimo registro de la base de datos                ------------------------------------------Revisar-------------------------------------------
-            double[] input = db.datax()[320];                                   /////////////////////////////////////////////////////////////////////////////////////////////
-            foreach (var x in input)
-                Console.Write(x);
-            double[] salida = db.NormInverse(red.Forward_propagation(input));
+        {
+            List<double[]> entrada = db.datax();              
+            double[] input = entrada[entrada.Count-1];
+            double[] salida =db.NormInverse(red.Forward_propagation(input));
 
             // grid view 2 - Actualizacion
             int rowEscribir = dataGridView2.Rows.Count - 1;
@@ -93,14 +116,16 @@ namespace COVID.Vista
             dataGridView2.Rows[rowEscribir].Cells[7].Value = salida[7];
             dataGridView2.Rows[rowEscribir].Cells[8].Value = salida[8];
             dataGridView2.Rows[rowEscribir].Cells[9].Value = salida[9];
+
+            f5(salida);
         }
-        private void button3_Click(object sender, EventArgs e)              //btnVolver
+        private void button3_Click(object sender, EventArgs e)            
         {
             this.SetVisibleCore(false);
             new principal().ShowDialog();
             this.Dispose();
         }
-        private void button4_Click(object sender, EventArgs e)              ///btnGenerarReporte
+        private void button4_Click(object sender, EventArgs e)            ///btnGenerarReporte
         {
             SLDocument sl = new SLDocument();           ///objeto paquete
             SLStyle style = new SLStyle();              ///estilos

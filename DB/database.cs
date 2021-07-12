@@ -185,7 +185,7 @@ namespace COVID.DB
 			double[] aux = new double[x.Length];
 			for (int i = 0; i < x.Length; i++)
 			{
-				aux[i] = x[i] * (385 - 4) + 4;  //return value * (max - min) + min;
+				aux[i] = Math.Round(x[i] * (385 - 4) + 4);  //return value * (max - min) + min;
 			}
 			return aux;
 		}

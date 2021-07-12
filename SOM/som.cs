@@ -44,11 +44,11 @@ namespace COVID.SOM
         }
         public void clasificar(List<double[]> datax)
         {
-            for (int k = 0; k < datax.Count; k++)  //recorre la data
+            for (int k = 0; k < datax.Count; k++)
             {
                 double[] input = datax[k];
-                nodo bmu = matriz.getBMU(datax[k]);
-               
+                nodo bmu = matriz.getBMU(input);
+                bmu.clasificador(k);
             }
         }
         public int radio0() //radio inical del mapa

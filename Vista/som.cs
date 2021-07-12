@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using COVID.SOM;
 using COVID.DB;
 using System.Drawing.Printing;
+using LiveCharts.Configurations;
+using System.Windows.Media;
 
 namespace COVID.Vista
 {
@@ -20,16 +22,21 @@ namespace COVID.Vista
     {
         public COVID.SOM.som mapa;
         public List<double[]> data;
-        List<HeatPoint> puntos;
-        List<HeatPoint> puntos2;
+        public List<HeatPoint> puntos;
+        public List<HeatPoint> puntos2;
+
+
+       
 
         public som()
         {
-            EntrenarSom.fit();
+            //EntrenarSom.fit();
             mapa = EntrenarSom.carga();
+            mapa = EntrenarSom.clasificar(mapa);
             InitializeComponent();
             refresh();
         }
+        
         #region f5
         public void refresh()
         {
@@ -41,6 +48,7 @@ namespace COVID.Vista
                 for (int j = 0; j < mapa.matriz.alto; j++)
                 {
                     puntos2.Add(new HeatPoint(i, j, mapa.matriz.grid[i, j].getContagios()));
+                    //puntos2.Add(new HeatPoint(i, j, mapa.matriz.grid[i, j].clasifica2.Count));
                     puntos.Add(new HeatPoint(i, j, mapa.matriz.grid[i, j].getContador()));
                 }
             }
@@ -49,16 +57,70 @@ namespace COVID.Vista
             {
                 Title = "Neurona",
                 Values = new ChartValues<HeatPoint>(puntos2),
-                DataLabels = false
+                DataLabels = false,
+                GradientStopCollection = new GradientStopCollection
+                {
+                    new GradientStop(System.Windows.Media.Color.FromRgb(42, 72, 88), 0),
+                    //new GradientStop(System.Windows.Media.Color.FromRgb(131, 214, 129), .25),
+                    new GradientStop(System.Windows.Media.Color.FromRgb(153, 222, 124), .25),
+                    
+                    new GradientStop(System.Windows.Media.Color.FromRgb(165, 226, 122), .5),
+                    new GradientStop(System.Windows.Media.Color.FromRgb(200, 237, 115), .75),
+                    new GradientStop(System.Windows.Media.Color.FromRgb(237, 247, 111), 1)
+                }
             });
+            
             cartesianChart1.Series.Add(new HeatSeries
             {
                 Title = "Neurona",
                 Values = new ChartValues<HeatPoint>(puntos),
-                DataLabels = true
+                DataLabels = true,
+                GradientStopCollection = new GradientStopCollection
+                {
+                    new GradientStop(System.Windows.Media.Color.FromRgb(42, 72, 88), 0),
+                    new GradientStop(System.Windows.Media.Color.FromRgb(131, 214, 129), .25),
+                    new GradientStop(System.Windows.Media.Color.FromRgb(165, 226, 122), .5),
+                    new GradientStop(System.Windows.Media.Color.FromRgb(200, 237, 115), .75),
+                    new GradientStop(System.Windows.Media.Color.FromRgb(237, 247, 111), 1)
+                }
             });
 
+
             cartesianChart1.AxisX.Add(new Axis
+            {
+                Labels = new[]
+                {
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10"
+                },
+                Separator = new Separator { Step = 1 }
+            });
+            cartesianChart1.AxisY.Add(new Axis
+            {
+                Labels = new[]
+                {
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10"
+                },
+                Separator = new Separator { Step = 1 }
+            });
+            cartesianChart2.AxisX.Add(new Axis
             {
                 //LabelsRotation = -15,
                 Labels = new[]
@@ -76,8 +138,7 @@ namespace COVID.Vista
                 },
                 Separator = new Separator { Step = 1 }
             });
-
-            cartesianChart1.AxisY.Add(new Axis
+            cartesianChart2.AxisY.Add(new Axis
             {
                 Labels = new[]
                 {
@@ -115,12 +176,21 @@ namespace COVID.Vista
         #region Graficos
         private void cartesianChart2_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
         {
-
+            
         }
 
         private void cartesianChart1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
         {
 
+        }
+        private void som_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cartesianChart2_DataClick(object sender, ChartPoint chartPoint)
+        {
+            Console.WriteLine("CLIK");
         }
         #endregion
 
@@ -149,7 +219,7 @@ namespace COVID.Vista
         }
         #endregion
 
-        private void som_Load(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

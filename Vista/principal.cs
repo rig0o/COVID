@@ -26,17 +26,14 @@ namespace COVID.Vista
             this.SetVisibleCore(false);
             database db = new database();
             red = entrenamiento.carga();
-
             new mlp(db, red).ShowDialog();
             this.Dispose();
         }
-
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.SetVisibleCore(false);
             new som().ShowDialog();
-
             this.Dispose();
         }
 
