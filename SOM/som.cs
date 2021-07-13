@@ -38,7 +38,7 @@ namespace COVID.SOM
                         nodoTemp.setPesos(alfa, theta, input);
                     }
                 }
-                Console.WriteLine("alfa->"+alfa+"--RO-->"+ neighborhood(iteracion, iteracionMax));
+                //Console.WriteLine("alfa->"+alfa+"--RO-->"+ neighborhood(iteracion, iteracionMax));  variable controladora
 
             }
         }
@@ -57,17 +57,15 @@ namespace COVID.SOM
         }
         public double landa(int iteracionmax) // 2b Time Constant
         {
-            return iteracionmax / Math.Log(radio0());       // version tesis
-            //return iteracionmax / radio0();           //version paper
+            return iteracionmax / Math.Log(radio0());     
         }
         public double neighborhood(int iteracion, int iteracionmax)   // Ecuacion 2a  radius of the neighborhood
         {
-            return radio0() * Math.Exp(-iteracion / landa(iteracionmax)); // tesis
+            return radio0() * Math.Exp(-iteracion / landa(iteracionmax)); 
         }
         public double learning(double alfa0, int iteracion, int iteracionmax)  // Ecuacion  3b con variante en la division
         {
-            // return alfa0 * Math.Exp(-iteracion / iteracionmax);        //  version  paper git
-            return alfa0 * Math.Exp(-iteracion / landa(iteracionmax));   //version tesis 
+            return alfa0 * Math.Exp(-iteracion / landa(iteracionmax)); 
         }
     }
 }

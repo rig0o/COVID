@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace COVID.MLP
 {
-    class entrenamiento
+    public class entrenamiento
     {
         static Mlp red;
         static List<Capa> capas;

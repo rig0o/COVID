@@ -130,26 +130,26 @@ namespace COVID.DB
 			while (datos.Read())
 			{	
 				entrada = new string[20];
-				entrada[0] = datos.GetString(0); 
-				entrada[1] = datos.GetString(1); 
-				entrada[2] = datos.GetString(2);
-				entrada[3] = datos.GetString(3);
-				entrada[4] = datos.GetString(4);
-				entrada[5] = datos.GetString(5);
-				entrada[6] = datos.GetString(6);
-				entrada[7] = datos.GetString(7);
-				entrada[8] = datos.GetString(8);
-				entrada[9] = datos.GetString(9);
-				entrada[10] = datos.GetString(10);
-				entrada[11] = datos.GetString(11);
-				entrada[12] = datos.GetString(12);
-				entrada[13] = datos.GetString(13);
-				entrada[14] = datos.GetString(14);
-				entrada[15] = datos.GetString(15);
-				entrada[16] = datos.GetString(16);
-				entrada[17] = datos.GetString(17);
-				entrada[18] = datos.GetString(18);
-				entrada[19] = datos.GetString(19);
+				entrada[0] = datos.GetString(0);
+				entrada[1] = datos.GetDouble(1).ToString();
+				entrada[2] = datos.GetDouble(2).ToString();
+				entrada[3] = datos.GetDouble(3).ToString();
+				entrada[4] = datos.GetDouble(4).ToString();
+				entrada[5] = datos.GetDouble(5).ToString();
+				entrada[6] = datos.GetDouble(6).ToString();
+				entrada[7] = datos.GetDouble(7).ToString();
+				entrada[8] = datos.GetDouble(8).ToString();
+				entrada[9] = datos.GetDouble(9).ToString();
+				entrada[10] = datos.GetDouble(10).ToString();
+				entrada[11] = datos.GetDouble(11).ToString();
+				entrada[12] = datos.GetDouble(12).ToString();
+				entrada[13] = datos.GetDouble(13).ToString();
+				entrada[14] = datos.GetDouble(14).ToString();
+				entrada[15] = datos.GetDouble(15).ToString();
+				entrada[16] = datos.GetDouble(16).ToString();
+				entrada[17] = datos.GetDouble(17).ToString();
+				entrada[18] = datos.GetDouble(18).ToString();
+				entrada[19] = datos.GetDouble(19).ToString();
 				dataCOVID.Add(entrada);
 
 			}
