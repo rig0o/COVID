@@ -17,7 +17,7 @@ namespace COVID.SOM
         static database db;
         static List<double[]> entrada;
         
-        static string SomPath = @"C:\SW\EntrenamientoSOM.bin";
+        static string SomPath = @"C:\Users\matut\source\repos\COVID\Archivos\EntrenamientoSOM.bin";
 
        // static string SomPath = @"C:\SW\EntrenamientoSOM.bin";
 

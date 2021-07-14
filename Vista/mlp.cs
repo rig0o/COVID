@@ -22,19 +22,23 @@ namespace COVID.Vista
     {
         database db;
         Mlp red;
-        public mlp(database db, Mlp red)
+        public mlp()
         {
-            this.db = db;
-            this.red = red;
+            
+            
+            this.db = new database();
+            this.red = entrenamiento.carga();
             InitializeComponent();
+            Refresh();
+            f5();
         }
 
         #region F5
         private void mlp_Load(object sender, EventArgs e)
         {
 
-            Refresh();
-            f5();
+            //Refresh();
+            //f5();
 
         }
 

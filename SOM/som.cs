@@ -14,9 +14,6 @@ namespace COVID.SOM
         }
         #endregion
 
-        public som()
-        {
-        }
 
         public void entrenar(List<double[]> datax, double alfa0, int iteracionMax)//  500 o  325 Filas 
         {

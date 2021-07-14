@@ -9,7 +9,7 @@ namespace COVID.DB
 {
     public class database
     {
-        private const string ConnectionString = @"Data Source=C:\SW\Dataset.db";
+        private const string ConnectionString = @"Data Source=C:\Users\matut\source\repos\COVID\Archivos\Dataset.db";
 		public List<double[]> data;
 		public List<double[]> target;
 		public List<string[]> dataCOVID;

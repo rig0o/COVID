@@ -24,9 +24,7 @@ namespace COVID.Vista
         private void button2_Click(object sender, EventArgs e)
         {
             this.SetVisibleCore(false);
-            database db = new database();
-            red = entrenamiento.carga();
-            new mlp(db, red).ShowDialog();
+            new mlp().ShowDialog();
             this.Dispose();
         }
 
